@@ -1,0 +1,10 @@
+{
+    "recommendations": [
+        "ms-azuretools.vscode-docker",
+        "editorconfig.editorconfig",
+        "exiasr.hadolint",
+        "davidanson.vscode-markdownlint",
+        "ms-python.python",
+        "redhat.vscode-yaml"
+    ]
+}

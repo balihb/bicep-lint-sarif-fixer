@@ -1,0 +1,94 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: check-merge-conflict
+      - id: mixed-line-ending
+        args: [ --fix=auto ]
+      - id: end-of-file-fixer
+      - id: fix-byte-order-marker
+      - id: check-yaml
+        args: [ --allow-multiple-documents ]
+      - id: check-json
+      - id: check-ast
+      - id: requirements-txt-fixer
+      - id: name-tests-test
+  - repo: https://github.com/compilerla/conventional-pre-commit
+    rev: v3.6.0
+    hooks:
+      - id: conventional-pre-commit
+        stages: [ commit-msg ]
+  - repo: https://github.com/editorconfig-checker/editorconfig-checker.python
+    rev: 3.0.3
+    hooks:
+      - id: editorconfig-checker
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.29.4
+    hooks:
+      - id: check-renovate
+        additional_dependencies:
+          # renovate: datasource=pypi
+          - pyjson5==1.6.7
+      - id: check-github-actions
+      - id: check-github-workflows
+      - id: check-jsonschema
+        name: "Validate yamllint config"
+        files: ^\.yamllint\.ya?ml$
+        types: [ yaml ]
+        args:
+          - --schemafile
+          - https://json.schemastore.org/yamllint.json
+      - id: check-jsonschema
+        name: "Validate markdownlint config"
+        files: ^\.markdownlint\.ya?ml$
+        types: [ yaml ]
+        args:
+          - --schemafile
+          - https://raw.githubusercontent.com/DavidAnson/markdownlint/main/schema/markdownlint-config-schema.json
+      - id: check-jsonschema
+        name: "Validate Hadolint config"
+        files: ^\.hadolint\.yaml$
+        types: [ yaml ]
+        args:
+          - --schemafile
+          - https://raw.githubusercontent.com/hadolint/hadolint/master/contrib/hadolint.json
+      - id: check-jsonschema
+        name: "Validate GitVersion config"
+        files: ^GitVersion\.yml$
+        types: [ yaml ]
+        args:
+          - --schemafile
+          - https://raw.githubusercontent.com/GitTools/GitVersion/main/schemas/6.0/GitVersion.configuration.json
+      - id: check-jsonschema
+        name: "Validate container-structure-test config"
+        files: container-structure-test\.yaml$
+        types: [ yaml ]
+        args:
+          - --schemafile
+          - https://json.schemastore.org/container-structure-test.json
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.9.0.5
+    hooks:
+      - id: shellcheck
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.43.0
+    hooks:
+      - id: markdownlint
+  - repo: https://github.com/adrienverge/yamllint.git
+    rev: v1.35.1
+    hooks:
+      - id: yamllint
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    # Ruff version.
+    rev: v0.8.0
+    hooks:
+      # Run the linter.
+      - id: ruff
+        args: [ --fix ]
+      # Run the formatter.
+      - id: ruff-format
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.0
+    hooks:
+      - id: hadolint

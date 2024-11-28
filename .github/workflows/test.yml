@@ -1,0 +1,134 @@
+name: Test, Coverage, Sonar
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+    name: Python ${{ matrix.python-version }} tests
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+          cache-dependency-path: |
+            requirements-tox.txt
+            requirements-test.txt
+
+      - name: Install tox
+        run: |
+          pip install -r requirements-tox.txt
+
+      - name: Run tests with tox
+        run: |
+          version="py${{ matrix.python-version }}"
+          version=${version//./}
+          tox -e $version
+
+      - name: Upload reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports-${{ matrix.python-version }}
+          path: |
+            .report
+            .coverage.*
+          include-hidden-files: true
+
+  combine_and_upload_junit:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download reports
+        uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+          cache: 'pip'
+          cache-dependency-path: |
+            requirements-tox.txt
+            requirements-junitparser.txt
+
+      - name: debug
+        run: |
+          ls -la
+          cd .report
+          find
+
+      - name: Install tox
+        run: |
+          pip install -r requirements-tox.txt
+
+      - name: Combine JUnit XML reports
+        run: |
+          tox -e merge
+
+      - name: Upload combined JUnit XML report
+        uses: actions/upload-artifact@v4
+        with:
+          name: combined-junit-report
+          path: .report/junit/result.xml
+          include-hidden-files: true
+
+  coverage:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+          cache: 'pip'
+          cache-dependency-path: |
+            requirements-tox.txt
+            requirements-cov.txt
+
+      - name: Download coverage reports from test jobs
+        uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+
+      - name: Install tox
+        run: |
+          pip install -r requirements-tox.txt
+
+      - name: Run coverage combine and generate reports
+        run: |
+          tox -e coverage
+
+      - name: Upload combined coverage report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: combined-coverage-report
+          path: |
+            .report/coverage/coverage.xml
+            .report/htmlcov
+            .coverage
+          include-hidden-files: true

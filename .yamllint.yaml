@@ -1,0 +1,17 @@
+---
+extends: default
+
+rules:
+  line-length:
+    # keep in sync with .editorconfig
+    max: 256
+    level: warning
+
+  # comments-indentation: disable  # don't bother me with this rule
+  truthy:
+    level: error
+    check-keys: false
+  document-start: disable
+  brackets: { min-spaces-inside: 0, max-spaces-inside: 1 }
+  braces: { min-spaces-inside: 0, max-spaces-inside: 1 }
+  comments-indentation: false

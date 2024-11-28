@@ -1,0 +1,42 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+max_line_length = 120
+tab_width = 4
+
+[{*.bash,*.sh,*.zsh}]
+indent_size = 2
+tab_width = 2
+
+[{*.json,*.json5}]
+indent_size = 2
+
+[{*.yaml,*.yml,.snyk,.yamllint}]
+indent_size = 2
+max_line_length = 256
+
+[*.rst]
+tab_width = unset
+indent_size = unset
+
+[*.py]
+max_line_length = 180
+
+[*.bat]
+end_of_line = crlf
+indent_size = unset
+indent_style = unset
+tab_width = unset
+
+[.gitignore]
+max_line_length = 190
+
+[{LICENSE,Makefile}]
+indent_size = unset
+indent_style = unset
+tab_width = unset
