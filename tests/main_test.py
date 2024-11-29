@@ -50,6 +50,32 @@ def test_main_with_files(mock_stdout, mock_open_path, sample_sarif):
     assert len(written_json["runs"][0]["results"]) == 3  # Ensure results are preserved
 
 
+@patch("sys.argv", ["bicep_lint_sarif_fixer", "-i", "samefile.sarif", "-o", "samefile.sarif"])
+@patch("pathlib.Path.open", new_callable=mock_open, read_data='{"runs": []}')
+@patch("shutil.move")
+def test_main_with_same_file(mock_shutil_move, mock_open_path, sample_sarif):
+    """
+    Test the main function with the same input and output file specified.
+    """
+    # Mock input file content
+    mock_open_path.return_value.read.return_value = json.dumps(sample_sarif)
+
+    # Run main
+    main()
+
+    # Verify input file was read
+    mock_open_path.assert_any_call("r", encoding="utf-8")
+
+    # Verify temporary file was created and moved
+    assert mock_shutil_move.called
+    temp_file = mock_shutil_move.call_args[0][0]
+    target_file = mock_shutil_move.call_args[0][1]
+
+    # Convert paths to strings for comparison
+    assert "samefile.sarif" in str(target_file)  # Ensure target is the original file
+    assert "tmp" in str(temp_file)  # Ensure the source is a temp file
+
+
 
 @patch("sys.argv", ["bicep_lint_sarif_fixer", "-i", "-", "-o", "-"])
 @patch("sys.stdin", new_callable=StringIO)
