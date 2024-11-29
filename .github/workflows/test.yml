@@ -181,6 +181,10 @@ jobs:
             ${{ github.workspace }}/.scannerwork
           key: sonar-${{ env.PYTHON_VERSION }}-${{ hashFiles('sonar-project.properties') }}
 
+      - name: debug
+        run: |
+          ls -la
+
       - name: Download combined junit reports
         uses: actions/download-artifact@v4
         with:
