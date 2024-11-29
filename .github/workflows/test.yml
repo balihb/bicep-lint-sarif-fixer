@@ -15,7 +15,7 @@ env:
   PIP_PROGRESS_BAR: "off"
   PRE_COMMIT_VERSION: 4.0.1
   PYTHONUNBUFFERED: 1
-  # renovate: datasource=python-version depName=pre-commit-python packageName=python
+  # renovate: datasource=python-version depName=python
   PYTHON_VERSION: 3.13.0
   XDG_CACHE_HOME: ${{ github.workspace }}/.cache
 
@@ -189,3 +189,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.python.coverage.reportPaths=.report/coverage/coverage.xml
+            -Dsonar.junit.reportPaths=.report/junit/result.xml
