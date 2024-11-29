@@ -184,6 +184,9 @@ jobs:
       - name: Download combined reports
         uses: actions/download-artifact@v4
         with:
+          name: |
+            combined-coverage-report
+            combined-junit-report
           merge-multiple: true
 
       - name: debug
