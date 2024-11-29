@@ -181,12 +181,16 @@ jobs:
             ${{ github.workspace }}/.scannerwork
           key: sonar-${{ env.PYTHON_VERSION }}-${{ hashFiles('sonar-project.properties') }}
 
-      - name: Download combined reports
+      - name: Download combined junit reports
         uses: actions/download-artifact@v4
         with:
-          name: |
-            combined-coverage-report
-            combined-junit-report
+          name: combined-junit-report
+          merge-multiple: true
+
+      - name: Download combined coverage reports
+        uses: actions/download-artifact@v4
+        with:
+          name: combined-coverage-report
           merge-multiple: true
 
       - name: debug
