@@ -202,4 +202,5 @@ jobs:
 
       - name: Fix Sonar cache
         run: |
-          chmod -R a+rwx "${SONAR_USER_HOME}"
+          sudo chmod -R a+rwx "${SONAR_USER_HOME}"
+          sudo chmod -R a+rwx "${{ github.workspace }}/.scannerwork"
