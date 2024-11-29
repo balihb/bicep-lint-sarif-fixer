@@ -190,6 +190,7 @@ jobs:
         with:
           name: combined-junit-report
           merge-multiple: true
+          path: .report/junit
 
       - name: Download combined coverage reports
         uses: actions/download-artifact@v4
