@@ -30,7 +30,7 @@ jobs:
         with:
           path: |
             .tox
-          key: tox-${{ env.PYTHON_VERSION }}-${{ hashFiles('requirements-tox.txt') }}--${{ hashFiles('pyproject.toml') }}-${{ hashFiles('tox.ini') }}
+          key: tox-${{ matrix.python-version }}-${{ hashFiles('requirements-tox.txt') }}-${{ hashFiles('pyproject.toml') }}-${{ hashFiles('tox.ini') }}
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
@@ -73,17 +73,17 @@ jobs:
         with:
           path: |
             .tox
-          key: tox-${{ env.PYTHON_VERSION }}-${{ hashFiles('requirements-tox.txt') }}--${{ hashFiles('pyproject.toml') }}-${{ hashFiles('tox.ini') }}
+          key: tox-junit-${{ env.PYTHON_VERSION }}-${{ hashFiles('requirements-tox.txt') }}--${{ hashFiles('pyproject.toml') }}-${{ hashFiles('tox.ini') }}
 
       - name: Download reports
         uses: actions/download-artifact@v4
         with:
           merge-multiple: true
 
-      - name: Set up Python 3.x
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v5
         with:
-          python-version: 3.x
+          python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
           cache-dependency-path: |
             requirements-tox.txt
@@ -117,12 +117,12 @@ jobs:
         with:
           path: |
             .tox
-          key: tox-${{ env.PYTHON_VERSION }}-${{ hashFiles('requirements-tox.txt') }}--${{ hashFiles('pyproject.toml') }}-${{ hashFiles('tox.ini') }}
+          key: tox-coverage-${{ env.PYTHON_VERSION }}-${{ hashFiles('requirements-tox.txt') }}--${{ hashFiles('pyproject.toml') }}-${{ hashFiles('tox.ini') }}
 
-      - name: Set up Python 3.x
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v5
         with:
-          python-version: 3.x
+          python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
           cache-dependency-path: |
             requirements-tox.txt
@@ -157,10 +157,19 @@ jobs:
     needs:
       - combine-junit
       - combine-coverage
+    env:
+
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+
+      - name: Cache tox
+        uses: actions/cache@v4
+        with:
+          path: |
+            .tox
+          key: tox-${{ env.PYTHON_VERSION }}-${{ hashFiles('requirements-tox.txt') }}--${{ hashFiles('pyproject.toml') }}-${{ hashFiles('tox.ini') }}
 
       - name: Download combined reports
         uses: actions/download-artifact@v4
