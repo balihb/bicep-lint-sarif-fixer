@@ -9,8 +9,15 @@ on:
       - main
 
 env:
+  FORCE_COLOR: 1
+  PIP_CACHE_DIR: .cache/pip
+  PIP_DISABLE_PIP_VERSION_CHECK: 1
+  PIP_PROGRESS_BAR: "off"
+  PRE_COMMIT_VERSION: 4.0.1
+  PYTHONUNBUFFERED: 1
   # renovate: datasource=python-version depName=pre-commit-python packageName=python
   PYTHON_VERSION: 3.13.0
+  XDG_CACHE_HOME: ${{ github.workspace }}/.cache
 
 jobs:
   test:
@@ -158,18 +165,19 @@ jobs:
       - combine-junit
       - combine-coverage
     env:
+      SONAR_USER_HOME: ${{ github.workspace }}/.cache/sonar
 
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
-      - name: Cache tox
+      - name: Cache Python, Sonar and Bicep
+        id: cache-sonar
         uses: actions/cache@v4
         with:
-          path: |
-            .tox
-          key: tox-${{ env.PYTHON_VERSION }}-${{ hashFiles('requirements-tox.txt') }}--${{ hashFiles('pyproject.toml') }}-${{ hashFiles('tox.ini') }}
+          path: ${{ env.XDG_CACHE_HOME }}
+          key: sonar-${{ env.PYTHON_VERSION }}-${{ hashFiles('sonar-project.properties') }}
 
       - name: Download combined reports
         uses: actions/download-artifact@v4
