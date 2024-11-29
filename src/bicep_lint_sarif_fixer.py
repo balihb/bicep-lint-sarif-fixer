@@ -299,7 +299,7 @@ category_to_diagnostic_level: dict[str, str] = {
 """
 
 
-def _parse_args():
+def _parse_args() -> argparse.ArgumentParser:
     """Parse command-line arguments.
 
     Returns:
@@ -309,16 +309,16 @@ def _parse_args():
     parser.add_argument(
         "-i",
         "--input",
-        type=Path,
+        type=str,
         default=None,
-        help="Path to the input SARIF file (default: stdin).",
+        help="Path to the input SARIF file (default: stdin). Use '-' for stdin.",
     )
     parser.add_argument(
         "-o",
         "--output",
-        type=Path,
+        type=str,
         default=None,
-        help="Path to the output SARIF file (default: stdout).",
+        help="Path to the output SARIF file (default: stdout). Use '-' for stdout.",
     )
     parser.add_argument(
         "--version",
@@ -387,9 +387,9 @@ def process_sarif_string(input_data: str, rule_definitions: RuleDefs = None) -> 
 
 
 def process_sarif_file(
-    input_path: Path | None = None,
-    output_path: Path | None = None,
-    rule_definitions: RuleDefs | None = None,
+        input_path: Path | str | None = None,
+        output_path: Path | str | None = None,
+        rule_definitions: RuleDefs | None = None,
 ):
     """
     Process SARIF data from input and output file paths.
@@ -399,8 +399,8 @@ def process_sarif_file(
     from stdin. If no output file is provided, writes to stdout.
 
     Args:
-        input_path (Path | None): Path to the input SARIF file, or `None` for stdin.
-        output_path (Path | None): Path to the output SARIF file, or `None` for stdout.
+        input_path (Path | str | None): Path to the input SARIF file, `-` for stdin, or `None` for default.
+        output_path (Path | str | None): Path to the output SARIF file, `-` for stdout, or `None` for default.
         rule_definitions (RuleDefs | None): A dictionary mapping rule IDs to their definitions.
 
     Raises:
@@ -408,27 +408,28 @@ def process_sarif_file(
     """
     if rule_definitions is None:
         rule_definitions = rule_defs
+
     # Read input
-    if input_path:
-        with input_path.open("r", encoding="utf-8") as infile:
-            input_data = infile.read()
-    else:
+    if input_path == "-" or input_path is None:
         input_data = sys.stdin.read()
+    else:
+        with Path(input_path).open("r", encoding="utf-8") as infile:
+            input_data = infile.read()
 
     # Process data
     processed_data = process_sarif_string(input_data, rule_definitions)
 
     # Handle case where input and output are the same
-    if input_path and input_path == output_path:
+    if input_path == output_path and input_path not in [None, "-"]:
         with tempfile.NamedTemporaryFile("w", delete=False, encoding="utf-8") as tmpfile:
             tmpfile.write(processed_data)
             temp_path = Path(tmpfile.name)
-        shutil.move(temp_path, input_path)
-    elif output_path:
-        with output_path.open("w", encoding="utf-8") as outfile:
-            outfile.write(processed_data)
-    else:
+        shutil.move(temp_path, Path(input_path))  # Overwrite the input file
+    elif output_path == "-" or output_path is None:
         sys.stdout.write(processed_data)
+    else:
+        with Path(output_path).open("w", encoding="utf-8") as outfile:
+            outfile.write(processed_data)
 
 
 def main():
