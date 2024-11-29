@@ -176,13 +176,19 @@ jobs:
         id: cache-sonar
         uses: actions/cache@v4
         with:
-          path: ${{ env.XDG_CACHE_HOME }}
+          path: |
+            ${{ env.XDG_CACHE_HOME }}
+            ${{ github.workspace }}/.scannerwork
           key: sonar-${{ env.PYTHON_VERSION }}-${{ hashFiles('sonar-project.properties') }}
 
       - name: Download combined reports
         uses: actions/download-artifact@v4
         with:
           merge-multiple: true
+
+      - name: debug
+        run: |
+          ls -la
 
       - name: SonarQube Cloud Scan
         uses: SonarSource/sonarcloud-github-action@master
@@ -193,3 +199,7 @@ jobs:
           args: >
             -Dsonar.python.coverage.reportPaths=.report/coverage/coverage.xml
             -Dsonar.junit.reportPaths=.report/junit/result.xml
+
+      - name: Fix Sonar cache
+        run: |
+          chmod -R a+rwx "${SONAR_USER_HOME}"
