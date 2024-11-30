@@ -387,9 +387,9 @@ def process_sarif_string(input_data: str, rule_definitions: RuleDefs = None) -> 
 
 
 def process_sarif_file(
-        input_path: Path | str | None = None,
-        output_path: Path | str | None = None,
-        rule_definitions: RuleDefs | None = None,
+    input_path: Path | str | None = None,
+    output_path: Path | str | None = None,
+    rule_definitions: RuleDefs | None = None,
 ):
     """
     Process SARIF data from input and output file paths.

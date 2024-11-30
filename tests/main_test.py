@@ -76,7 +76,6 @@ def test_main_with_same_file(mock_shutil_move, mock_open_path, sample_sarif):
     assert "tmp" in str(temp_file)  # Ensure the source is a temp file
 
 
-
 @patch("sys.argv", ["bicep_lint_sarif_fixer", "-i", "-", "-o", "-"])
 @patch("sys.stdin", new_callable=StringIO)
 @patch("sys.stdout", new_callable=StringIO)
