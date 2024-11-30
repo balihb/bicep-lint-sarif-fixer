@@ -13,7 +13,6 @@ env:
   PIP_CACHE_DIR: .cache/pip
   PIP_DISABLE_PIP_VERSION_CHECK: 1
   PIP_PROGRESS_BAR: "off"
-  PRE_COMMIT_VERSION: 4.0.1
   PYTHONUNBUFFERED: 1
   # renovate: datasource=python-version depName=python
   PYTHON_VERSION: 3.13.0
@@ -181,10 +180,6 @@ jobs:
             ${{ github.workspace }}/.scannerwork
           key: sonar-${{ env.PYTHON_VERSION }}-${{ hashFiles('sonar-project.properties') }}
 
-      - name: debug
-        run: |
-          ls -la
-
       - name: Download combined junit reports
         uses: actions/download-artifact@v4
         with:
@@ -197,11 +192,6 @@ jobs:
         with:
           name: combined-coverage-report
           merge-multiple: true
-
-      - name: debug
-        run: |
-          ls -la
-          find .report
 
       - name: SonarQube Cloud Scan
         uses: SonarSource/sonarcloud-github-action@master

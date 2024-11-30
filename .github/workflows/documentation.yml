@@ -1,0 +1,47 @@
+name: documentation
+
+on: [push, pull_request, workflow_dispatch]
+
+permissions:
+  contents: write
+
+env:
+  FORCE_COLOR: 1
+  PIP_CACHE_DIR: .cache/pip
+  PIP_DISABLE_PIP_VERSION_CHECK: 1
+  PIP_PROGRESS_BAR: "off"
+  PYTHONUNBUFFERED: 1
+  # renovate: datasource=python-version depName=python
+  PYTHON_VERSION: 3.13.0
+  XDG_CACHE_HOME: ${{ github.workspace }}/.cache
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+          cache-dependency-path: |
+            requirements-tox.txt
+
+      - name: Install tox
+        run: |
+          pip install -r requirements-tox.txt
+
+      - name: Sphinx build
+        run: |
+          tox -e merge
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        with:
+          publish_branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: _build/
+          force_orphan: true
