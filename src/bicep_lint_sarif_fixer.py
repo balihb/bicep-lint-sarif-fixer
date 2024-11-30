@@ -363,7 +363,7 @@ def add_rules_to_sarif_dict(sarif_data: dict, rule_definitions: RuleDefs = None)
                     "properties": rule_definition["properties"],
                     "defaultConfiguration": {"level": category_to_diagnostic_level[rule_definition["properties"]["category"]]},
                 }
-                if rule not in rules_section:
+                if rule not in rules_section:  # pragma: no cover
                     rules_section.append(rule)
     return sarif_data
 
@@ -437,6 +437,5 @@ def main():
     process_sarif_file(args.input, args.output, rule_defs)
 
 
-# pragma: no cover
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     main()

@@ -1,0 +1,4 @@
+*
+!Dockerfile
+!docker-entrypoint.sh
+!src/bicep_lint_sarif_fixer.py
