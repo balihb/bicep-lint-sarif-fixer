@@ -437,5 +437,6 @@ def main():
     process_sarif_file(args.input, args.output, rule_defs)
 
 
+# pragma: no cover
 if __name__ == "__main__":
     main()
