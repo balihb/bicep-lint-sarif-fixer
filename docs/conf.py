@@ -28,9 +28,6 @@ extensions = [
     "sphinxarg.ext",
 ]
 
-# templates_path = ["_templates"]  # Path for custom templates
-# exclude_patterns = []  # Files to exclude
-
 autodoc_default_options = {
     "members": True,
     "undoc-members": False,
@@ -43,5 +40,4 @@ autodoc_default_options = {
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = "pydata_sphinx_theme"
-# html_static_path = ["_static"]
 html_context = {"default_mode": "auto"}
