@@ -5,6 +5,7 @@
         "exiasr.hadolint",
         "davidanson.vscode-markdownlint",
         "ms-python.python",
-        "redhat.vscode-yaml"
+        "redhat.vscode-yaml",
+        "esbenp.prettier-vscode"
     ]
 }
