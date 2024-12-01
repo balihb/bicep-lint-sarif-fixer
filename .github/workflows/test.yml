@@ -172,6 +172,16 @@ jobs:
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
 
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+
+      - name: Display structure of downloaded files
+        run: |
+          ls -la
+          ls -la .report
+
       - name: Cache Sonar
         id: cache-sonar
         uses: actions/cache@v4
@@ -180,11 +190,6 @@ jobs:
             ${{ env.XDG_CACHE_HOME }}
             ${{ github.workspace }}/.scannerwork
           key: sonar-${{ env.PYTHON_VERSION }}-${{ hashFiles('sonar-project.properties') }}
-
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
-        with:
-          merge-multiple: true
 
       - name: SonarQube Cloud Scan
         uses: SonarSource/sonarcloud-github-action@master
