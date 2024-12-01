@@ -62,14 +62,16 @@ jobs:
         with:
           name: reports-${{ matrix.python-version }}
           path: |
-            .report
             .coverage.*
+            .report
+            coverage-reports
+            xunit-reports
           include-hidden-files: true
 
   combine-junit:
     runs-on: ubuntu-latest
     needs: test
-
+    if: false
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -113,7 +115,7 @@ jobs:
   combine-coverage:
     runs-on: ubuntu-latest
     needs: test
-
+    if: false
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -160,9 +162,7 @@ jobs:
 
   sonar:
     runs-on: ubuntu-latest
-    needs:
-      - combine-junit
-      - combine-coverage
+    needs: test
     env:
       SONAR_USER_HOME: ${{ github.workspace }}/.cache/sonar
 
@@ -180,17 +180,9 @@ jobs:
             ${{ github.workspace }}/.scannerwork
           key: sonar-${{ env.PYTHON_VERSION }}-${{ hashFiles('sonar-project.properties') }}
 
-      - name: Download combined junit reports
-        uses: actions/download-artifact@v4
-        with:
-          name: combined-junit-report
-          merge-multiple: true
-          path: .report/junit
-
       - name: Download combined coverage reports
         uses: actions/download-artifact@v4
         with:
-          name: combined-coverage-report
           merge-multiple: true
 
       - name: SonarQube Cloud Scan
@@ -198,10 +190,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.python.coverage.reportPaths=.report/coverage/coverage.xml
-            -Dsonar.junit.reportPaths=.report/junit/result.xml
+#        with:
+#          args: >
+#            -Dsonar.python.coverage.reportPaths=.report/coverage/coverage.xml
+#            -Dsonar.junit.reportPaths=.report/junit/result.xml
 
       - name: Fix Sonar cache
         run: |
