@@ -108,7 +108,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: combined-junit-report
-          path: .report/junit/result.xml
+          path: .report/junit-result.xml
           include-hidden-files: true
 
   combine-coverage:
@@ -193,7 +193,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.python.xunit.reportPath=.report/junit/result.xml
+            -Dsonar.python.xunit.reportPath=.report/junit-result.xml
 
       - name: Fix Sonar cache
         run: |
