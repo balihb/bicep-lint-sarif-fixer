@@ -22,7 +22,7 @@ jobs:
       - name: Renovate
         uses: renovatebot/github-action@v41.0.5
         env:
-          LOG_LEVEL: debug
+          LOG_LEVEL: info
         with:
           configurationFile: config.js
           env-regex: "^(?:RENOVATE_\\w+|LOG_LEVEL|GITHUB_COM_TOKEN|NODE_OPTIONS|AWS_TOKEN|AZURE_ACCESS_TOKEN)$"
