@@ -107,7 +107,7 @@ jobs:
       - name: Upload reports
         uses: actions/upload-artifact@v4
         with:
-          name: combined-junit-report
+          name: combined-test-report
           path: |
             .coverage.*
             .report
