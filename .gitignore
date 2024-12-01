@@ -413,3 +413,5 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/git,vim,diff,linux,patch,python,windows,notepadpp,sonarqube,compressed,virtualenv,tortoisegit,jetbrains+all,visualstudiocode
 
 .report
+coverage-reports
+xunit-reports
