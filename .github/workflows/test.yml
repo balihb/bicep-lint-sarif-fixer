@@ -68,7 +68,7 @@ jobs:
             xunit-reports
           include-hidden-files: true
 
-  combine-junit:
+  combine-test-report:
     runs-on: ubuntu-latest
     needs: test
     steps:
@@ -104,11 +104,15 @@ jobs:
         run: |
           tox -e merge
 
-      - name: Upload combined JUnit XML report
+      - name: Upload reports
         uses: actions/upload-artifact@v4
         with:
           name: combined-junit-report
-          path: .report/junit-result.xml
+          path: |
+            .coverage.*
+            .report
+            coverage-reports
+            xunit-reports
           include-hidden-files: true
 
   combine-coverage:
@@ -162,8 +166,7 @@ jobs:
   sonar:
     runs-on: ubuntu-latest
     needs:
-      - test
-      - combine-junit
+      - combine-test-report
     env:
       SONAR_USER_HOME: ${{ github.workspace }}/.cache/sonar
 
