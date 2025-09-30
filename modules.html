@@ -1,0 +1,539 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" data-theme="auto">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Bicep lint SARIF fixer module &#8212; Bicep lint SARIF fixer 0.0.0a documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "auto";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "auto";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=e8454e50"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modules';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="bicep_lint_sarif_fixer command" href="cmd.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="auto">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Bicep lint SARIF fixer 0.0.0a documentation</p>
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="cmd.html">
+    bicep_lint_sarif_fixer command
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Bicep lint SARIF fixer module
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="cmd.html">
+    bicep_lint_sarif_fixer command
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Bicep lint SARIF fixer module
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"></div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Bicep lint SARIF fixer module</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <p># docs/modules.rst</p>
+<section id="module-bicep_lint_sarif_fixer">
+<span id="bicep-lint-sarif-fixer-module"></span><h1>Bicep lint SARIF fixer module<a class="headerlink" href="#module-bicep_lint_sarif_fixer" title="Link to this heading">#</a></h1>
+<dl class="py data">
+<dt class="sig sig-object py" id="bicep_lint_sarif_fixer.RuleDefinition">
+<span class="sig-prename descclassname"><span class="pre">bicep_lint_sarif_fixer.</span></span><span class="sig-name descname"><span class="pre">RuleDefinition</span></span><a class="headerlink" href="#bicep_lint_sarif_fixer.RuleDefinition" title="Link to this definition">#</a></dt>
+<dd><p>A single rule definition.</p>
+<p>Each rule definition contains the following fields:</p>
+<ul class="simple">
+<li><p><cite>id</cite> (str): The unique identifier of the rule.</p></li>
+<li><p><cite>shortDescription</cite> (dict): A brief description of the rule, typically with a single <cite>text</cite> key.</p></li>
+<li><p><cite>fullDescription</cite> (dict, optional): A detailed description of the rule, typically with a single <cite>text</cite> key.</p></li>
+<li><p><cite>helpUri</cite> (str, optional): A link to documentation for the rule.</p></li>
+<li><p><cite>properties</cite> (dict, optional): Additional metadata for the rule, such as category or severity.</p></li>
+</ul>
+<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bicep_lint_sarif_fixer.RuleDefs">
+<span class="sig-prename descclassname"><span class="pre">bicep_lint_sarif_fixer.</span></span><span class="sig-name descname"><span class="pre">RuleDefs</span></span><a class="headerlink" href="#bicep_lint_sarif_fixer.RuleDefs" title="Link to this definition">#</a></dt>
+<dd><p>All rule definitions.</p>
+<p>A dictionary mapping rule IDs (strings) to their corresponding <cite>RuleDefinition</cite> objects.</p>
+<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code>]]]</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bicep_lint_sarif_fixer.rule_defs">
+<span class="sig-prename descclassname"><span class="pre">bicep_lint_sarif_fixer.</span></span><span class="sig-name descname"><span class="pre">rule_defs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'adminusername-should-not-be-literal':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/adminusername-should-not-be-literal',</span> <span class="pre">'name':</span> <span class="pre">'Admin</span> <span class="pre">user</span> <span class="pre">name</span> <span class="pre">not</span> <span class="pre">literal',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'Security'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">&quot;Property</span> <span class="pre">'adminUserName'</span> <span class="pre">should</span> <span class="pre">not</span> <span class="pre">use</span> <span class="pre">a</span> <span class="pre">literal</span> <span class="pre">value.</span> <span class="pre">Use</span> <span class="pre">a</span> <span class="pre">param</span> <span class="pre">instead.&quot;}},</span> <span class="pre">'artifacts-parameters':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/artifacts-parameters',</span> <span class="pre">'name':</span> <span class="pre">'Artifacts</span> <span class="pre">parameters',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'BestPractice'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Follow</span> <span class="pre">best</span> <span class="pre">practices</span> <span class="pre">when</span> <span class="pre">including</span> <span class="pre">the</span> <span class="pre">_artifactsLocation</span> <span class="pre">and</span> <span class="pre">_artifactsLocationSasToken</span> <span class="pre">parameters.'}},</span> <span class="pre">'decompiler-cleanup':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/decompiler-cleanup',</span> <span class="pre">'name':</span> <span class="pre">'Decompiler</span> <span class="pre">cleanup',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'BestPractice'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Some</span> <span class="pre">decompiler</span> <span class="pre">imperfections</span> <span class="pre">may</span> <span class="pre">need</span> <span class="pre">to</span> <span class="pre">be</span> <span class="pre">cleaned</span> <span class="pre">up</span> <span class="pre">manually.'}},</span> <span class="pre">'explicit-values-for-loc-params':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/explicit-values-for-loc-params',</span> <span class="pre">'name':</span> <span class="pre">'Explicit</span> <span class="pre">values</span> <span class="pre">for</span> <span class="pre">module</span> <span class="pre">location</span> <span class="pre">parameters',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'ResourceLocationRules'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'When</span> <span class="pre">consuming</span> <span class="pre">a</span> <span class="pre">module,</span> <span class="pre">any</span> <span class="pre">location-related</span> <span class="pre">parameters</span> <span class="pre">that</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">default</span> <span class="pre">value</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">assigned</span> <span class="pre">an</span> <span class="pre">explicit</span> <span class="pre">value.'}},</span> <span class="pre">'max-asserts':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/max-asserts',</span> <span class="pre">'name':</span> <span class="pre">'Max</span> <span class="pre">asserts',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'DeploymentError'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">&quot;Maximum</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">'assert'</span> <span class="pre">statements</span> <span class="pre">used.&quot;}},</span> <span class="pre">'max-outputs':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/max-outputs',</span> <span class="pre">'name':</span> <span class="pre">'Max</span> <span class="pre">outputs',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'DeploymentError'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Maximum</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">outputs</span> <span class="pre">used.'}},</span> <span class="pre">'max-params':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/max-params',</span> <span class="pre">'name':</span> <span class="pre">'Max</span> <span class="pre">parameters',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'DeploymentError'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Maximum</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">parameters</span> <span class="pre">used.'}},</span> <span class="pre">'max-resources':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/max-resources',</span> <span class="pre">'name':</span> <span class="pre">'Max</span> <span class="pre">resources',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'DeploymentError'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Maximum</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">resources</span> <span class="pre">used.'}},</span> <span class="pre">'max-variables':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/max-variables',</span> <span class="pre">'name':</span> <span class="pre">'Max</span> <span class="pre">variables',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'DeploymentError'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Maximum</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">variables</span> <span class="pre">used.'}},</span> <span class="pre">'nested-deployment-template-scoping':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/nested-deployment-template-scoping',</span> <span class="pre">'name':</span> <span class="pre">'Nested</span> <span class="pre">deployment</span> <span class="pre">template</span> <span class="pre">scoping',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'DeploymentError'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">&quot;Nested</span> <span class="pre">deployment</span> <span class="pre">resources</span> <span class="pre">cannot</span> <span class="pre">refer</span> <span class="pre">to</span> <span class="pre">top-level</span> <span class="pre">symbols</span> <span class="pre">from</span> <span class="pre">within</span> <span class="pre">the</span> <span class="pre">'template'</span> <span class="pre">property</span> <span class="pre">when</span> <span class="pre">inner-scoped</span> <span class="pre">evaluation</span> <span class="pre">is</span> <span class="pre">used.&quot;}},</span> <span class="pre">'no-conflicting-metadata':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/no-conflicting-metadata',</span> <span class="pre">'name':</span> <span class="pre">'No</span> <span class="pre">conflicting</span> <span class="pre">metadata',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'PotentialCodeIssues'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">&quot;Metadata</span> <span class="pre">properties</span> <span class="pre">whose</span> <span class="pre">value</span> <span class="pre">is</span> <span class="pre">set</span> <span class="pre">by</span> <span class="pre">a</span> <span class="pre">separate</span> <span class="pre">decorator</span> <span class="pre">should</span> <span class="pre">not</span> <span class="pre">be</span> <span class="pre">set</span> <span class="pre">via</span> <span class="pre">the</span> <span class="pre">'&#64;metadata()'</span> <span class="pre">decorator.&quot;}},</span> <span class="pre">'no-deployments-resources':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/no-deployments-resources',</span> <span class="pre">'name':</span> <span class="pre">'No</span> <span class="pre">deployments</span> <span class="pre">resources',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'BestPractice'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Bicep</span> <span class="pre">modules</span> <span class="pre">are</span> <span class="pre">recommended</span> <span class="pre">instead</span> <span class="pre">of</span> <span class="pre">representing</span> <span class="pre">nested</span> <span class="pre">or</span> <span class="pre">linked</span> <span class="pre">deployments</span> <span class="pre">as</span> <span class="pre">a</span> <span class="pre">resource.'}},</span> <span class="pre">'no-hardcoded-env-urls':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/no-hardcoded-env-urls',</span> <span class="pre">'name':</span> <span class="pre">'No</span> <span class="pre">hardcoded</span> <span class="pre">environment</span> <span class="pre">URLs',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'BestPractice'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Environment</span> <span class="pre">URLs</span> <span class="pre">should</span> <span class="pre">not</span> <span class="pre">be</span> <span class="pre">hardcoded.</span> <span class="pre">Use</span> <span class="pre">the</span> <span class="pre">environment()</span> <span class="pre">function</span> <span class="pre">to</span> <span class="pre">ensure</span> <span class="pre">compatibility</span> <span class="pre">across</span> <span class="pre">clouds.'}},</span> <span class="pre">'no-hardcoded-location':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/no-hardcoded-location',</span> <span class="pre">'name':</span> <span class="pre">'No</span> <span class="pre">hardcoded</span> <span class="pre">locations',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'ResourceLocationRules'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">&quot;A</span> <span class="pre">resource's</span> <span class="pre">location</span> <span class="pre">should</span> <span class="pre">not</span> <span class="pre">use</span> <span class="pre">a</span> <span class="pre">hard-coded</span> <span class="pre">string</span> <span class="pre">or</span> <span class="pre">variable</span> <span class="pre">value.</span> <span class="pre">It</span> <span class="pre">should</span> <span class="pre">use</span> <span class="pre">a</span> <span class="pre">parameter,</span> <span class="pre">an</span> <span class="pre">expression,</span> <span class="pre">or</span> <span class="pre">the</span> <span class="pre">string</span> <span class="pre">'global'.&quot;}},</span> <span class="pre">'no-loc-expr-outside-params':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/no-loc-expr-outside-params',</span> <span class="pre">'name':</span> <span class="pre">'No</span> <span class="pre">location</span> <span class="pre">expressions</span> <span class="pre">outside</span> <span class="pre">of</span> <span class="pre">parameter</span> <span class="pre">default</span> <span class="pre">values',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'ResourceLocationRules'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Functions</span> <span class="pre">resourceGroup().location</span> <span class="pre">and</span> <span class="pre">deployment().location</span> <span class="pre">should</span> <span class="pre">only</span> <span class="pre">be</span> <span class="pre">used</span> <span class="pre">as</span> <span class="pre">the</span> <span class="pre">default</span> <span class="pre">value</span> <span class="pre">of</span> <span class="pre">a</span> <span class="pre">parameter.'}},</span> <span class="pre">'no-unnecessary-dependson':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/no-unnecessary-dependson',</span> <span class="pre">'name':</span> <span class="pre">'No</span> <span class="pre">unnecessary</span> <span class="pre">dependsOn</span> <span class="pre">entries',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'BestPractice'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'No</span> <span class="pre">unnecessary</span> <span class="pre">dependsOn.'}},</span> <span class="pre">'no-unused-existing-resources':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/no-unused-existing-resources',</span> <span class="pre">'name':</span> <span class="pre">'No</span> <span class="pre">unused</span> <span class="pre">existing</span> <span class="pre">resources',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'BestPractice'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'All</span> <span class="pre">existing</span> <span class="pre">resources</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">used.'}},</span> <span class="pre">'no-unused-params':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/no-unused-params',</span> <span class="pre">'name':</span> <span class="pre">'No</span> <span class="pre">unused</span> <span class="pre">parameters',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'BestPractice'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'All</span> <span class="pre">parameters</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">used.'}},</span> <span class="pre">'no-unused-vars':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/no-unused-vars',</span> <span class="pre">'name':</span> <span class="pre">'No</span> <span class="pre">unused</span> <span class="pre">variables',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'BestPractice'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'All</span> <span class="pre">variables</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">used.'}},</span> <span class="pre">'outputs-should-not-contain-secrets':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/outputs-should-not-contain-secrets',</span> <span class="pre">'name':</span> <span class="pre">'Outputs</span> <span class="pre">should</span> <span class="pre">not</span> <span class="pre">contain</span> <span class="pre">secrets',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'Security'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Outputs</span> <span class="pre">should</span> <span class="pre">not</span> <span class="pre">contain</span> <span class="pre">secrets.'}},</span> <span class="pre">'prefer-interpolation':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/prefer-interpolation',</span> <span class="pre">'name':</span> <span class="pre">'Prefer</span> <span class="pre">interpolation',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'Style'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Use</span> <span class="pre">string</span> <span class="pre">interpolation</span> <span class="pre">instead</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">concat</span> <span class="pre">function.'}},</span> <span class="pre">'prefer-unquoted-property-names':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/prefer-unquoted-property-names',</span> <span class="pre">'name':</span> <span class="pre">'Prefer</span> <span class="pre">unquoted</span> <span class="pre">property</span> <span class="pre">names',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'Style'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Property</span> <span class="pre">names</span> <span class="pre">that</span> <span class="pre">are</span> <span class="pre">valid</span> <span class="pre">identifiers</span> <span class="pre">should</span> <span class="pre">be</span> <span class="pre">declared</span> <span class="pre">without</span> <span class="pre">quotation</span> <span class="pre">marks</span> <span class="pre">and</span> <span class="pre">accessed</span> <span class="pre">using</span> <span class="pre">dot</span> <span class="pre">notation.'}},</span> <span class="pre">'protect-commandtoexecute-secrets':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/protect-commandtoexecute-secrets',</span> <span class="pre">'name':</span> <span class="pre">'Protect</span> <span class="pre">commandToExecute</span> <span class="pre">secrets',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'Security'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Use</span> <span class="pre">protectedSettings</span> <span class="pre">for</span> <span class="pre">commandToExecute</span> <span class="pre">secrets.'}},</span> <span class="pre">'secure-parameter-default':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/secure-parameter-default',</span> <span class="pre">'name':</span> <span class="pre">'Secure</span> <span class="pre">parameter</span> <span class="pre">default',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'Security'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Secure</span> <span class="pre">parameters</span> <span class="pre">should</span> <span class="pre">not</span> <span class="pre">have</span> <span class="pre">hardcoded</span> <span class="pre">defaults</span> <span class="pre">(except</span> <span class="pre">for</span> <span class="pre">empty</span> <span class="pre">or</span> <span class="pre">newGuid()).'}},</span> <span class="pre">'secure-params-in-nested-deploy':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/secure-params-in-nested-deploy',</span> <span class="pre">'name':</span> <span class="pre">'Secure</span> <span class="pre">parameters</span> <span class="pre">in</span> <span class="pre">nested</span> <span class="pre">deployments',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'Security'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Outer-scoped</span> <span class="pre">nested</span> <span class="pre">deployment</span> <span class="pre">resources</span> <span class="pre">should</span> <span class="pre">not</span> <span class="pre">be</span> <span class="pre">used</span> <span class="pre">for</span> <span class="pre">secure</span> <span class="pre">parameters</span> <span class="pre">or</span> <span class="pre">list*</span> <span class="pre">functions.'}},</span> <span class="pre">'secure-secrets-in-params':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/secure-secrets-in-params',</span> <span class="pre">'name':</span> <span class="pre">'Secure</span> <span class="pre">secrets</span> <span class="pre">in</span> <span class="pre">parameters',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'Security'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Parameters</span> <span class="pre">that</span> <span class="pre">represent</span> <span class="pre">secrets</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">secure.'}},</span> <span class="pre">'simplify-interpolation':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/simplify-interpolation',</span> <span class="pre">'name':</span> <span class="pre">'Simplify</span> <span class="pre">interpolation',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'Style'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Remove</span> <span class="pre">unnecessary</span> <span class="pre">string</span> <span class="pre">interpolation.'}},</span> <span class="pre">'simplify-json-nul':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/simplify-json-nul',</span> <span class="pre">'name':</span> <span class="pre">'Simplify</span> <span class="pre">JSON</span> <span class="pre">null',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'BestPractice'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">&quot;Simplify</span> <span class="pre">json('null')</span> <span class="pre">to</span> <span class="pre">null&quot;}},</span> <span class="pre">'use-parent-property':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/use-parent-property',</span> <span class="pre">'name':</span> <span class="pre">'Use</span> <span class="pre">parent</span> <span class="pre">property',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'BestPractice'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">&quot;Use</span> <span class="pre">the</span> <span class="pre">parent</span> <span class="pre">property</span> <span class="pre">instead</span> <span class="pre">of</span> <span class="pre">formatting</span> <span class="pre">child</span> <span class="pre">resource</span> <span class="pre">names</span> <span class="pre">with</span> <span class="pre">'/'</span> <span class="pre">characters.&quot;}},</span> <span class="pre">'use-recent-api-versions':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/use-recent-api-versions',</span> <span class="pre">'name':</span> <span class="pre">'Use</span> <span class="pre">recent</span> <span class="pre">API</span> <span class="pre">versions',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'BestPractice'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Use</span> <span class="pre">recent</span> <span class="pre">API</span> <span class="pre">versions.'}},</span> <span class="pre">'use-recent-module-versions':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/use-recent-module-versions',</span> <span class="pre">'name':</span> <span class="pre">'Use</span> <span class="pre">recent</span> <span class="pre">module</span> <span class="pre">versions',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'BestPractice'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Use</span> <span class="pre">recent</span> <span class="pre">module</span> <span class="pre">versions.'}},</span> <span class="pre">'use-resource-id-functions':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/use-resource-id-functions',</span> <span class="pre">'name':</span> <span class="pre">'Use</span> <span class="pre">resource</span> <span class="pre">ID</span> <span class="pre">functions',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'BestPractice'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Properties</span> <span class="pre">representing</span> <span class="pre">a</span> <span class="pre">resource</span> <span class="pre">ID</span> <span class="pre">must</span> <span class="pre">be</span> <span class="pre">generated</span> <span class="pre">appropriately.'}},</span> <span class="pre">'use-resource-symbol-reference':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/use-resource-symbol-reference',</span> <span class="pre">'name':</span> <span class="pre">'Use</span> <span class="pre">resource</span> <span class="pre">symbol</span> <span class="pre">reference',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'BestPractice'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">&quot;Use</span> <span class="pre">a</span> <span class="pre">direct</span> <span class="pre">resource</span> <span class="pre">symbol</span> <span class="pre">reference</span> <span class="pre">instead</span> <span class="pre">of</span> <span class="pre">'reference'</span> <span class="pre">or</span> <span class="pre">'list*'</span> <span class="pre">functions.&quot;}},</span> <span class="pre">'use-safe-access':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/use-safe-access',</span> <span class="pre">'name':</span> <span class="pre">'Use</span> <span class="pre">safe</span> <span class="pre">access',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'BestPractice'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">&quot;Use</span> <span class="pre">the</span> <span class="pre">safe</span> <span class="pre">access</span> <span class="pre">(.?)</span> <span class="pre">operator</span> <span class="pre">instead</span> <span class="pre">of</span> <span class="pre">checking</span> <span class="pre">object</span> <span class="pre">contents</span> <span class="pre">with</span> <span class="pre">the</span> <span class="pre">'contains'</span> <span class="pre">function.&quot;}},</span> <span class="pre">'use-secure-value-for-secure-inputs':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/use-secure-value-for-secure-inputs',</span> <span class="pre">'name':</span> <span class="pre">'Use</span> <span class="pre">secure</span> <span class="pre">value</span> <span class="pre">for</span> <span class="pre">secure</span> <span class="pre">inputs',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'Security'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Resource</span> <span class="pre">properties</span> <span class="pre">expecting</span> <span class="pre">secure</span> <span class="pre">input</span> <span class="pre">should</span> <span class="pre">be</span> <span class="pre">assigned</span> <span class="pre">secure</span> <span class="pre">values.'}},</span> <span class="pre">'use-stable-resource-identifiers':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/use-stable-resource-identifiers',</span> <span class="pre">'name':</span> <span class="pre">'Use</span> <span class="pre">stable</span> <span class="pre">resource</span> <span class="pre">identifier',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'PotentialCodeIssues'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Resource</span> <span class="pre">identifiers</span> <span class="pre">should</span> <span class="pre">be</span> <span class="pre">reproducible</span> <span class="pre">outside</span> <span class="pre">of</span> <span class="pre">their</span> <span class="pre">initial</span> <span class="pre">deployment</span> <span class="pre">context.</span> <span class="pre">'}},</span> <span class="pre">'use-stable-vm-image':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/use-stable-vm-image',</span> <span class="pre">'name':</span> <span class="pre">'Use</span> <span class="pre">stable</span> <span class="pre">VM</span> <span class="pre">image',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'BestPractice'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">&quot;Virtual</span> <span class="pre">machines</span> <span class="pre">shouldn't</span> <span class="pre">use</span> <span class="pre">preview</span> <span class="pre">images.&quot;}},</span> <span class="pre">'what-if-short-circuiting':</span> <span class="pre">{'helpUri':</span> <span class="pre">'https://aka.ms/bicep/linter/what-if-short-circuiting',</span> <span class="pre">'name':</span> <span class="pre">'What-if</span> <span class="pre">short-circuiting',</span> <span class="pre">'properties':</span> <span class="pre">{'category':</span> <span class="pre">'PotentialCodeIssues'},</span> <span class="pre">'shortDescription':</span> <span class="pre">{'text':</span> <span class="pre">'Runtime</span> <span class="pre">values</span> <span class="pre">should</span> <span class="pre">not</span> <span class="pre">be</span> <span class="pre">used</span> <span class="pre">to</span> <span class="pre">determine</span> <span class="pre">resource</span> <span class="pre">IDs.'}}}</span></em><a class="headerlink" href="#bicep_lint_sarif_fixer.rule_defs" title="Link to this definition">#</a></dt>
+<dd><p>Definitions for Bicep Linter rules.</p>
+<p>Each key is a rule ID, and the value is a <cite>RuleDefinition</cite> object.</p>
+<p>Information sources:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/linter">Bicep Linter Docs</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Azure/bicep/tree/main/src/Bicep.Core/Analyzers/Linter/Rules">Bicep Linter Rules in the Bicep Source</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Azure/bicep/blob/main/src/Bicep.Core/CoreResources.resx">Bicep Linter Rule Descriptions</a></p></li>
+</ul>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rule_defs</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;adminusername-should-not-be-literal&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Admin user name not literal&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;shortDescription&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;Property &#39;adminUserName&#39; should not use a literal value. Use a param instead.&quot;</span><span class="p">},</span>
+        <span class="s2">&quot;helpUri&quot;</span><span class="p">:</span> <span class="s2">&quot;https://aka.ms/bicep/linter/adminusername-should-not-be-literal&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;Security&quot;</span><span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="bicep_lint_sarif_fixer.category_to_diagnostic_level">
+<span class="sig-prename descclassname"><span class="pre">bicep_lint_sarif_fixer.</span></span><span class="sig-name descname"><span class="pre">category_to_diagnostic_level</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'BestPractice':</span> <span class="pre">'warning',</span> <span class="pre">'DeploymentError':</span> <span class="pre">'error',</span> <span class="pre">'Portability':</span> <span class="pre">'note',</span> <span class="pre">'PotentialCodeIssues':</span> <span class="pre">'warning',</span> <span class="pre">'ResourceLocationRules':</span> <span class="pre">'note',</span> <span class="pre">'Security':</span> <span class="pre">'warning',</span> <span class="pre">'Style':</span> <span class="pre">'warning'}</span></em><a class="headerlink" href="#bicep_lint_sarif_fixer.category_to_diagnostic_level" title="Link to this definition">#</a></dt>
+<dd><p>Bicep lint issue category to diagnostic level</p>
+<p><a class="reference external" href="https://github.com/Azure/bicep/blob/main/src/Bicep.Core/Analyzers/Linter/LinterRuleBase.cs">LinterRuleBase</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bicep_lint_sarif_fixer.add_rules_to_sarif_dict">
+<span class="sig-prename descclassname"><span class="pre">bicep_lint_sarif_fixer.</span></span><span class="sig-name descname"><span class="pre">add_rules_to_sarif_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sarif_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rule_definitions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="_modules/bicep_lint_sarif_fixer.html#add_rules_to_sarif_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bicep_lint_sarif_fixer.add_rules_to_sarif_dict" title="Link to this definition">#</a></dt>
+<dd><p>Add rule definitions to SARIF data.</p>
+<p>Modifies the SARIF data by adding a “rules” section to the tool extensions
+based on the provided rule definitions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sarif_data</strong> (<em>dict</em>) – A dictionary containing SARIF content.</p></li>
+<li><p><strong>rule_definitions</strong> (<em>RuleDefs</em><em> | </em><em>None</em>) – A dictionary mapping rule IDs to their definitions.
+If <cite>None</cite>, <cite>rule_defs</cite> is used as the default.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The updated SARIF data with added rules.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bicep_lint_sarif_fixer.process_sarif_string">
+<span class="sig-prename descclassname"><span class="pre">bicep_lint_sarif_fixer.</span></span><span class="sig-name descname"><span class="pre">process_sarif_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rule_definitions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/bicep_lint_sarif_fixer.html#process_sarif_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bicep_lint_sarif_fixer.process_sarif_string" title="Link to this definition">#</a></dt>
+<dd><p>Process SARIF data provided as a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_data</strong> (<em>str</em>) – The SARIF data as a JSON string.</p></li>
+<li><p><strong>rule_definitions</strong> (<em>RuleDefs</em><em> | </em><em>None</em>) – A dictionary mapping rule IDs to their definitions.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The processed SARIF data as a JSON string.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bicep_lint_sarif_fixer.process_sarif_file">
+<span class="sig-prename descclassname"><span class="pre">bicep_lint_sarif_fixer.</span></span><span class="sig-name descname"><span class="pre">process_sarif_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rule_definitions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/bicep_lint_sarif_fixer.html#process_sarif_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bicep_lint_sarif_fixer.process_sarif_file" title="Link to this definition">#</a></dt>
+<dd><p>Process SARIF data from input and output file paths.</p>
+<p>Reads SARIF data from the input file, applies rule processing, and writes
+the processed data to the output file. If no input file is provided, reads
+from stdin. If no output file is provided, writes to stdout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_path</strong> (<em>Path</em><em> | </em><em>str</em><em> | </em><em>None</em>) – Path to the input SARIF file, <cite>-</cite> for stdin, or <cite>None</cite> for default.</p></li>
+<li><p><strong>output_path</strong> (<em>Path</em><em> | </em><em>str</em><em> | </em><em>None</em>) – Path to the output SARIF file, <cite>-</cite> for stdout, or <cite>None</cite> for default.</p></li>
+<li><p><strong>rule_definitions</strong> (<em>RuleDefs</em><em> | </em><em>None</em>) – A dictionary mapping rule IDs to their definitions.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>FileNotFoundError</strong> – If the input file does not exist.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="cmd.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">bicep_lint_sarif_fixer command</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bicep_lint_sarif_fixer.RuleDefinition"><code class="docutils literal notranslate"><span class="pre">RuleDefinition</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bicep_lint_sarif_fixer.RuleDefs"><code class="docutils literal notranslate"><span class="pre">RuleDefs</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bicep_lint_sarif_fixer.rule_defs"><code class="docutils literal notranslate"><span class="pre">rule_defs</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bicep_lint_sarif_fixer.category_to_diagnostic_level"><code class="docutils literal notranslate"><span class="pre">category_to_diagnostic_level</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bicep_lint_sarif_fixer.add_rules_to_sarif_dict"><code class="docutils literal notranslate"><span class="pre">add_rules_to_sarif_dict()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bicep_lint_sarif_fixer.process_sarif_string"><code class="docutils literal notranslate"><span class="pre">process_sarif_string()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bicep_lint_sarif_fixer.process_sarif_file"><code class="docutils literal notranslate"><span class="pre">process_sarif_file()</span></code></a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="_sources/modules.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2024-2025, Balazs Hamorszky.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
